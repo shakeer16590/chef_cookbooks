@@ -7,10 +7,8 @@ package 'tree' do
 end
 package 'vim' do
 end
-file '/etc/motd' do
- content "This server is of #{node['root_group']}
- Hostname: #{node['hostname']}
- Ip-Address: #{node['ipaddress']} 
- O.S : #{node['hostnamectl']['operating_system']}
- Memory-Info: #{node['memory']['total']}"
+template '/etc/motd' do
+  source 'motd.erb'
+  variables( :name => 'Shakeer Ahamed' ) 
+  action :create
 end
